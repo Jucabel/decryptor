@@ -10,8 +10,8 @@ const QRReader = ({ addQrInfoToTheList, qrList, nTab }) => {
 
   useEffect(() => {
     (async () => {
-      const { state } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(state === 'granted');
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
     })();
   }, []);
 
