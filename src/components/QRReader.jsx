@@ -21,7 +21,7 @@ const QRReader = ({ addQrInfoToTheList, qrList, nTab }) => {
       type: type,
       data: data,
     });
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    alert(`Bar code with type ${type} has been scanned!`);
   };
 
   if (hasPermission === null) {
