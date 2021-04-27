@@ -33,6 +33,6 @@ export const addQrInfoToTheList = (qrInfo) => {
     return { type: SAVE_QR_DATA, payload: qrInfo };
 };
 
-export const setTab = (index) => {
-    return { type: SET_TAB, payload: index };
+export const setTab = (ind) => {
+    return { type: SET_TAB, payload: ind };
 };

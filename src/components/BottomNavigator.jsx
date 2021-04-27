@@ -18,7 +18,7 @@ const BottomNavigator = ({ setTab, nTab }) => {
       onStateChange={(e) => {
         setTab(e.index);
       }}>
-      <Tab.Navigator barStyle={{ backgroundColor: '#2c1352' }}>
+      <Tab.Navigator barStyle={{ backgroundColor: '#2c1351' }}>
         <Tab.Screen
           name='READ'
           component={QRReader}

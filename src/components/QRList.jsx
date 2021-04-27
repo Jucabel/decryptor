@@ -52,8 +52,8 @@ const QRList = ({ qrList }) => {
 
         setTimeOut(
           setTimeout(async () => {
-            let auxData = await qrList.filter(function (str) {
-              return PATTERN.test(str.data.toLowerCase());
+            let auxData = await qrList.filter(function (obj) {
+              return PATTERN.test(obj.data.toLowerCase());
             });
             setAuxData(auxData);
             setIsLoading(false);
