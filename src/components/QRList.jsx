@@ -40,7 +40,6 @@ const QRList = ({ qrList }) => {
   }, [qrList]);
 
   useEffect(() => {
-    console.log(text);
     if (text) {
       if (text.trim() !== '') {
         if (timeout) {
@@ -70,7 +69,6 @@ const QRList = ({ qrList }) => {
       setIsLoading(false);
       setAuxData([...qrList]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text]);
 
   return (
