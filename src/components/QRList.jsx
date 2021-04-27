@@ -49,12 +49,12 @@ const QRList = ({ qrList }) => {
         }
         setIsLoading(true);
 
-        let PATTERN = new RegExp(String.raw`${text}`);
+        let PATTERN = new RegExp(String.raw`${text.toLowerCase()}`);
 
         setTimeOut(
           setTimeout(async () => {
             let auxData = await qrList.filter(function (str) {
-              return PATTERN.test(str.data);
+              return PATTERN.test(str.data.toLowerCase());
             });
             setAuxData(auxData);
             setIsLoading(false);
@@ -74,7 +74,7 @@ const QRList = ({ qrList }) => {
   }, [text]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} id='scene2'>
       <StatusBar barStyle='dark-content' />
       <TextInput
         style={styles.input}
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   item: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#B5C6E3',
+    backgroundColor: '#F1F1F1',
     padding: 15,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   title: {
-    fontSize: 25,
+    fontSize: 18,
     color: '#2c1352',
     // paddingRight: 80,
     width: '80%',

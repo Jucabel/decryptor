@@ -33,7 +33,7 @@ const QRReader = ({ addQrInfoToTheList, qrList }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} id='scene1'>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
