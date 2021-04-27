@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffectf } from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { setTab } from '../redux/reducers/qrReducer';
+import { connect } from 'react-redux';
 import QRReader from './QRReader';
 import QRList from './QRList';
 
@@ -10,13 +12,12 @@ const Tab = createMaterialBottomTabNavigator();
 const STYLES = ['default', 'dark-content', 'light-content'];
 const TRANSITIONS = ['fade', 'slide', 'none'];
 
-const BottomNavigator = () => {
-  const [hidden, setHidden] = useState(false);
-  const [statusBarStyle, setStatusBarStyle] = useState(STYLES[2]);
-  const [statusBarTransition, setStatusBarTransition] = useState(TRANSITIONS[0]);
-
+const BottomNavigator = ({ setTab, nTab }) => {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      onStateChange={(e) => {
+        setTab(e.index);
+      }}>
       <Tab.Navigator barStyle={{ backgroundColor: '#2c1352' }}>
         <Tab.Screen
           name='READ'
@@ -41,6 +42,8 @@ const BottomNavigator = () => {
   );
 };
 
-export default BottomNavigator;
+const mapStateToProps = (state) => ({
+  nTab: state.qrReducer.nTab,
+});
 
-const styles = StyleSheet.create({});
+export default connect(mapStateToProps, { setTab })(BottomNavigator);

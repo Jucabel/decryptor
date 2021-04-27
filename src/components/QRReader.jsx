@@ -4,11 +4,10 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { addQrInfoToTheList } from '../redux/reducers/qrReducer';
 import { connect } from 'react-redux';
 
-const QRReader = ({ addQrInfoToTheList, qrList }) => {
+const QRReader = ({ addQrInfoToTheList, qrList, nTab }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
-  console.log(qrList);
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -34,11 +33,13 @@ const QRReader = ({ addQrInfoToTheList, qrList }) => {
 
   return (
     <View style={styles.container} id='scene1'>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-        barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-      />
+      {nTab === 0 && (
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
+          barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
+        />
+      )}
       {!scanned && (
         <Image
           style={styles.square}
@@ -59,6 +60,7 @@ const QRReader = ({ addQrInfoToTheList, qrList }) => {
 
 const mapStateToProps = (state) => ({
   qrList: state.qrReducer.qrList,
+  nTab: state.qrReducer.nTab,
 });
 export default connect(mapStateToProps, { addQrInfoToTheList })(QRReader);
 
